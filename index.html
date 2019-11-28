@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Card Battle Stadium</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body onLoad="showWelcome()">
+    <script src="script.js"></script>
+    <h1>Welcome to Card Battle Stadium!</h1>
+    <p><button onClick="toggleHelp()">Help</button><button id="logButton" onClick="toggleBattleLog()">Battle Log</button><button onClick="debug()">Debug</button></p>
+    <div id="help" class="invisible">
+      <p>You and your opponent start out with 250HP.</p>
+      <p>You will attack using some specialized cards that deal damage to your opponent.</p>
+      <p>To attack your opponent, click on the "Fight" button</p>
+      <p>The fight button will pull out a random card from the deck.</p>
+      <p>If a 10 card is pulled out, it deals 10 damage.</p>
+      <p>If a 50 card is pulled out, it deals 50 damage.</p>
+      <p>Sometimes, a heal card may appear, which heals yourself.</p>
+      <p>All heal cards start with +.</p>
+      <p>Sometimes, a mystery card may appear, which deals a random amount of damage.</p>
+      <p>The higher the class of the mystery card, the more likely it will deal more damage.</p>
+      <p>Rarely, a critical hit may land, dealing more damage.</p>
+      <p>Rarely, the card may crumble, which doesn't cause any damage except to the card itself.</p>
+      <p>You may quit the battle when it's your turn by pressing the "Quit" button.</p>
+      <p>If you lose all your HP, you lose the battle, and the opponent wins.</p>
+      <p>If the opponent loses all their HP, you win the battle, and the opponent loses.</p>
+      <p><button onClick="toggleHelp()">Close</button></p>
+    </div>
+    <div id="logsection" class="invisible">
+      <p id="log"></p>
+      <p><button onClick="toggleBattleLog()">Close</button></p>
+    </div>
+    <div>Text Speed 
+      <input type="number" id="speed" min="1" max="7" value="3" onclick="setSpeed(value)">
+    </div>
+    <p>Autofight <input type="checkbox" id="autofight"></p>
+    <p></p>
+    <div id="debug" class="invisible">
+      <p><strong>Debugging Zone</strong></p>
+      <div>
+        <button onClick="setHPtoOne()">Set HPs to 1</button><button onClick="setTurnsTo49()">Set Turns to 49</button><button onClick="switchSides()">Switch Turns</button>
+      </div>
+      <p>Boss Mode <input type="checkbox" id="bossmode" onclick="debugBoss()"></p>
+      <div>
+      Card Type
+        <input type="radio" name="cardtype" id="healcard" onclick="showDebug()">Heal
+        <input type="radio" name="cardtype" id="mysterycard" onclick="showDebug()">Mystery
+        <input type="radio" name="cardtype" id="normalcard" onclick="showDebug()" checked=true>Normal
+        <input type="radio" name="cardtype" id="randomcard" onclick="showDebug()">Random
+      </div>
+      <div>
+        Card's Fate
+        <input type="radio" name="mod" id="miss">Crumble
+        <input type="radio" name="mod" id="crit">Crit
+        <input type="radio" name="mod" id="normal" checked=true>Hit
+        <input type="radio" name="mod" id="random">Random
+      </div>
+      <div id="debugfields">
+        <div id="normie">
+          <p>Normal Card Value <input type="number" id="normallabel" min="0" max="250" value="30"></p>
+        </div>
+        <div id="heal">
+          <p>Heal Card Percentage (1-100) <input type="number" id="healpercent" min="1" max="100" value="10" onclick="adjustHealValue()">
+          <br>
+          Heal Value: <span id="healvalue"></span></p>
+        </div>
+        <div id="mystery">
+          <p>Mystery Card Class (1-5) <input type="number" id="mysteryclass" min="1" max="5" value="1"></p>
+        </div>
+      </div>
+    </div>
+    <div id="welcome">
+      <p>What's the name of your fighter?</p>
+      <input type="text" id="fighterName"><button id="showopponent" onclick="showOpponent()">Submit</button>
+    </div>
+    <div id="opponent" class="invisible">
+      <p id="firstMessage"></p>
+      <p id="bossalert"></p>
+      <p id="secondMessage"></p>
+      <button id="continue" class="invisible" onclick="beginFight()">Continue</button>
+      <p id="coinflip"></p>
+    </div>
+    <div id="battlefield" class="invisible">
+      <p id="turns"></p>
+      <div class="healthbar" id="hero"><p id="herostats"></p></div>
+      <div class="healthbar" id="machine"><p id="machinestats"></p></div>
+    </div>
+    <div id="messagebox" class="invisible">
+      <p class="battlemessages" id="battleline4"></p>
+      <video id="nuke" class="invisible" width="640" height="480">
+        <source src="Media/Tsar Bomba.mp4" type="video/mp4">
+      </video>
+      <p class="battlemessages" id="battleline5"></p>
+      <p class="battlemessages" id="battleline6"></p>
+      <div id="fight"><p class="battlemessages" id="battlelinelast"></p>
+      <button onClick="fight()">Fight</button><button id="quit" onClick="quit()">Quit</button></div>
+    </div>
+    <div id="end" class="invisible">
+      <p id="finalmessage"></p>
+      <p id="finalmessage2"></p>
+      <p id="finalmessage3"></p>
+      <p id="finalmessage4"></p>
+      <button id="secondfight" class="invisible" onClick="fight2()">Fight</button>
+      <input type="text" id="pressF" width="12px">
+      <div id="playagain" class="invisible">
+        <p>Play again?
+        <button onclick="showNameChange()">Yes</button></p>
+      </div>
+      <div id="changename" class="invisible">
+        <p>Would you like to change your name? 
+        <button onClick="showWelcome()">Yes</button><button onClick="showOpponent()">No</button></p>
+      </div>
+    </div>
+  </body>
+</html>
