@@ -1,0 +1,56 @@
+.invisible {
+  display: none;
+}
+
+#help {
+  background-color:#222222;
+}
+
+#logsection {
+  background-color:#330000;
+}
+
+#nuke {
+  position:fixed;
+  top:0;
+  left:0;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.fade {
+  transition:1.0s;
+  opacity: 0;
+}
+
+.healthbar {
+  white-space: nowrap;
+  overflow: visible;
+  display: block;
+}
+
+.active {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', fantasy;
+  color: red;
+  font-size: 1.5em;
+}
+
+.inactive {
+  font-size: 1em;
+}
+
+body {
+  color: white;
+  background-color:black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-style: italic;
+}
+
+a {
+  color: yellow;
+}
